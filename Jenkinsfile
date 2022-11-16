@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    env{
+    environment{
         MYSQL_ROOT_PASSWORD='1234'
     }
     parameters {
