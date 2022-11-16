@@ -53,7 +53,7 @@ pipeline {
         stage('Deploy and Run') {
             steps {
                 echo 'Running Application'
-                bat 'docker stop cloudbank || true && docker rm cloudbank || true'
+//                 bat 'docker stop cloudbank || true && docker rm cloudbank || true'
                 bat 'docker run --detach --rm -p 8080:8080 -t --link bankmysql:localhost pranavpatel986/banking:0.0.2'
             }
         }
