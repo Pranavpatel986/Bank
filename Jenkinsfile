@@ -12,30 +12,30 @@ pipeline {
 //             '''
 //          }
 //         }
-        stage('Download Code') {
-            steps {
-               echo 'checking out'
-               checkout scm
-            }
-        }
-        stage('Execute Tests'){
-            steps {
-                echo 'Testing'
-                sh 'mvn test'
-            }
-        }
-        stage('Build Application'){
-            steps {
-                echo 'Building...'
-                sh 'mvn clean install -Dmaven.test.skip=true'
-            }
-        }
-        stage('Build Docker Image') {
-            steps {
-                echo 'Building Docker image'
-                sh 'docker build -t pranavpatel986/online-banking:1 .'
-            }
-        }
+//         stage('Download Code') {
+//             steps {
+//                echo 'checking out'
+//                checkout scm
+//             }
+//         }
+//         stage('Execute Tests'){
+//             steps {
+//                 echo 'Testing'
+//                 sh 'mvn test'
+//             }
+//         }
+//         stage('Build Application'){
+//             steps {
+//                 echo 'Building...'
+//                 sh 'mvn clean install -Dmaven.test.skip=true'
+//             }
+//         }
+//         stage('Build Docker Image') {
+//             steps {
+//                 echo 'Building Docker image'
+//                 sh 'docker build -t pranavpatel986/online-banking:1 .'
+//             }
+//         }
        stage('Create Database') {
             steps {
                 echo 'Running Database Image'
@@ -47,14 +47,14 @@ pipeline {
                 sh 'docker run --detach --name=bankmysql --env="MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" -p 3306:3306 mysql'
                 sh 'sleep 20'
             //  sh 'docker exec -i bankmysql mysql -uroot -proot < sql_dump/onlinebanking.sql'
-                sh 'docker exec -i bankmysql mysql -uroot -p${MYSQL_ROOT_PASSWORD} < sql_dump/onlinebanking.sql'
+//                 sh 'docker exec -i bankmysql mysql -uroot -p${MYSQL_ROOT_PASSWORD} < sql_dump/onlinebanking.sql'
             }
         }
         stage('Deploy and Run') {
             steps {
                 echo 'Running Application'
                 sh 'docker stop cloudbank || true && docker rm cloudbank || true'
-                sh 'docker run --detach --name=cloudbank -p 8888:8888 --link bankmysql:localhost -t hendisantika/online-banking:1'
+//                 sh 'docker run --detach --name=cloudbank -p 8888:8888 --link bankmysql:localhost -t hendisantika/online-banking:1'
             }
         }
     }
