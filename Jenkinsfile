@@ -3,27 +3,16 @@ pipeline {
     parameters {
         string(name: 'MYSQL_ROOT_PASSWORD', defaultValue: 'root', description: 'MySQL password')
     }
+    tools{
+        maven 'maven3.8.6'
+    }
     stages {
-        stage ("Initialize Jenkins Env") {
-         steps {
-            sh '''
-            echo "PATH = ${PATH}"
-            echo "M2_HOME = ${M2_HOME}"
-            '''
-         }
-        }
-        stage('Download Code') {
+        stage('Cloning Git') {
             steps {
-               echo 'checking out'
-               checkout scm
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/Pranavpatel986/Bank.git']]])
             }
         }
-        stage('Execute Tests'){
-            steps {
-                echo 'Testing'
-                sh 'mvn test'
-            }
-        }
+
         stage('Build Application'){
             steps {
                 echo 'Building...'
@@ -54,7 +43,7 @@ pipeline {
             steps {
                 echo 'Running Application'
                 sh 'docker stop cloudbank || true && docker rm cloudbank || true'
-                sh 'docker run --detach --name=cloudbank -p 8888:8888 --link bankmysql:localhost -t hendisantika/online-banking:1'
+                sh 'docker run --detach --name=cloudbank -p 8888:8888 --link bankmysql:localhost -t pranavpatel986/online-banking:1'
             }
         }
     }
