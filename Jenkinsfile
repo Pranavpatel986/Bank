@@ -4,7 +4,7 @@ pipeline {
         string(name: 'MYSQL_ROOT_PASSWORD', defaultValue: 'root', description: 'MySQL password')
     }
     tools{
-        maven 'maven3.8.6'
+        maven 'maven'
     }
     stages {
         stage('Cloning Git') {
