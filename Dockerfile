@@ -20,4 +20,4 @@ ADD src /code/src
 RUN ["mvn", "package", "-DskipTests"]
 
 
-# CMD ["java", "-jar", "/Banking-app.jar"]
+CMD ["java", "-jar", "/Banking-app.jar"]
