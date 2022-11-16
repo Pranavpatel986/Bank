@@ -37,20 +37,20 @@ pipeline {
                 bat 'docker build -t pranavpatel986/banking:0.0.2 .'
             }
         }
-       stage('Create Database') {
-            steps {
-                echo 'Running Database Image'
-            //    bat 'docker kill bankmysql 2> /dev/null'
-            //    bat 'docker kill cloudbank 2> /dev/null'
-            //    bat 'docker rm bankmysql 2> /dev/null'
-            //    bat 'docker rm cloudbank 2> /dev/null'
-//                 bat 'docker stop bankmysql || true && docker rm bankmysql || true'
-                bat 'docker run --detach --name=bankmysql --env="MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" -p 3307:3306 mysql'
-//                 bat 'sleep 20'
-            //  bat 'docker exec -i bankmysql mysql -uroot -proot < sql_dump/onlinebanking.sql'
-                bat 'docker exec -i bankmysql mysql -uroot -p${MYSQL_ROOT_PASSWORD} < /code/src/main/resources/sql/V1__20190307_Create_Tables_Online_Banking.sql'
-            }
-        }
+//        stage('Create Database') {
+//             steps {
+//                 echo 'Running Database Image'
+//             //    bat 'docker kill bankmysql 2> /dev/null'
+//             //    bat 'docker kill cloudbank 2> /dev/null'
+//             //    bat 'docker rm bankmysql 2> /dev/null'
+//             //    bat 'docker rm cloudbank 2> /dev/null'
+// //                 bat 'docker stop bankmysql || true && docker rm bankmysql || true'
+//                 bat 'docker run --detach --name=bankmysql --env="MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" -p 3307:3306 mysql'
+// //                 bat 'sleep 20'
+//             //  bat 'docker exec -i bankmysql mysql -uroot -proot < sql_dump/onlinebanking.sql'
+//                 bat 'docker exec -i bankmysql mysql -uroot -p${MYSQL_ROOT_PASSWORD} < /code/src/main/resources/sql/V1__20190307_Create_Tables_Online_Banking.sql'
+//             }
+//         }
         stage('Deploy and Run') {
             steps {
                 echo 'Running Application'
