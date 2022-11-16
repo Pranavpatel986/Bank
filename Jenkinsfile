@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    environment {
+            IMAGE_REPO_NAME="Bank-pipline"
+            IMAGE_TAG="latest"
+            MYSQL_ROOT_PASSWORD="root"
+        }
     parameters {
         string(name: 'MYSQL_ROOT_PASSWORD', defaultValue: 'root', description: 'MySQL password')
     }
@@ -12,18 +17,19 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/Pranavpatel986/Bank.git']]])
             }
         }
-
-        stage('Build Application'){
-            steps {
-                echo 'Building...'
-                sh 'mvn clean install -Dmaven.test.skip=true'
+        stage('Built maven'){
+            steps{
+                script{
+                    sh 'mvn clean install -Dmaven.test.skip=true'
+                }
             }
         }
-        stage('Build Docker Image') {
-            steps {
-                echo 'Building Docker image'
-                sh 'docker build -t pranavpatel986/online-banking:1 .'
+        stage('Building image') {
+          steps{
+            script {
+              sh 'docker build -t pranavpatel986/online-banking:1 .'
             }
+          }
         }
        stage('Create Database') {
             steps {
