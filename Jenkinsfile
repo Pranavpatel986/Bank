@@ -1,35 +1,40 @@
 pipeline {
     agent any
-    environment {
-            IMAGE_REPO_NAME="Bank-pipline"
-            IMAGE_TAG="latest"
-            MYSQL_ROOT_PASSWORD="root"
-        }
     parameters {
         string(name: 'MYSQL_ROOT_PASSWORD', defaultValue: 'root', description: 'MySQL password')
     }
-    tools{
-        maven 'maven'
-    }
     stages {
-        stage('Cloning Git') {
+//         stage ("Initialize Jenkins Env") {
+//          steps {
+//             sh '''
+//             echo "PATH = ${PATH}"
+//             echo "M2_HOME = ${M2_HOME}"
+//             '''
+//          }
+//         }
+        stage('Download Code') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/Pranavpatel986/Bank.git']]])
+               echo 'checking out'
+               checkout scm
             }
         }
-        stage('Built maven'){
-            steps{
-                script{
-                    sh 'mvn clean install'
-                }
+        stage('Execute Tests'){
+            steps {
+                echo 'Testing'
+                sh 'mvn test'
             }
         }
-        stage('Building image') {
-          steps{
-            script {
-              sh 'docker build -t pranavpatel986/online-banking:1 .'
+        stage('Build Application'){
+            steps {
+                echo 'Building...'
+                sh 'mvn clean install -Dmaven.test.skip=true'
             }
-          }
+        }
+        stage('Build Docker Image') {
+            steps {
+                echo 'Building Docker image'
+                sh 'docker build -t pranavpatel986/online-banking:1 .'
+            }
         }
        stage('Create Database') {
             steps {
@@ -49,7 +54,7 @@ pipeline {
             steps {
                 echo 'Running Application'
                 sh 'docker stop cloudbank || true && docker rm cloudbank || true'
-                sh 'docker run --detach --name=cloudbank -p 8888:8888 --link bankmysql:localhost -t pranavpatel986/online-banking:1'
+                sh 'docker run --detach --name=cloudbank -p 8888:8888 --link bankmysql:localhost -t hendisantika/online-banking:1'
             }
         }
     }
