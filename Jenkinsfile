@@ -33,28 +33,28 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image'
-                bat 'docker build -t pranavpatel986/banking:0.0.1 .'
+                bat 'docker build -t pranavpatel986/banking:0.0.2 .'
             }
         }
-//        stage('Create Database') {
-//             steps {
-//                 echo 'Running Database Image'
-//             //    sh 'docker kill bankmysql 2> /dev/null'
-//             //    sh 'docker kill cloudbank 2> /dev/null'
-//             //    sh 'docker rm bankmysql 2> /dev/null'
-//             //    sh 'docker rm cloudbank 2> /dev/null'
-//                 bat 'docker stop bankmysql || true && docker rm bankmysql || true'
-//                 bat 'docker run --detach --name=bankmysql --env="MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" -p 3306:3306 mysql'
-//                 bat 'sleep 20'
-//             //  sh 'docker exec -i bankmysql mysql -uroot -proot < sql_dump/onlinebanking.sql'
-//                 bat 'docker exec -i bankmysql mysql -uroot -p${MYSQL_ROOT_PASSWORD} < sql_dump/onlinebanking.sql'
-//             }
-//         }
+       stage('Create Database') {
+            steps {
+                echo 'Running Database Image'
+            //    bat 'docker kill bankmysql 2> /dev/null'
+            //    bat 'docker kill cloudbank 2> /dev/null'
+            //    bat 'docker rm bankmysql 2> /dev/null'
+            //    bat 'docker rm cloudbank 2> /dev/null'
+                bat 'docker stop bankmysql || true && docker rm bankmysql || true'
+                bat 'docker run --detach --name=bankmysql --env="MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" -p 3306:3306 mysql'
+                bat 'sleep 20'
+            //  bat 'docker exec -i bankmysql mysql -uroot -proot < sql_dump/onlinebanking.sql'
+                bat 'docker exec -i bankmysql mysql -uroot -p${MYSQL_ROOT_PASSWORD} < sql_dump/onlinebanking.sql'
+            }
+        }
         stage('Deploy and Run') {
             steps {
                 echo 'Running Application'
-//                 bat 'docker stop cloudbank || true && docker rm cloudbank || true'
-                bat 'docker run --detach --rm -p 8080:8080 -t pranavpatel986/banking:0.0.1'
+                bat 'docker stop cloudbank || true && docker rm cloudbank || true'
+                bat 'docker run --detach --rm -p 8080:8080 -t --link bankmysql:localhost pranavpatel986/banking:0.0.2'
             }
         }
     }
