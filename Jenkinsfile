@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    env{
+        MYSQL_ROOT_PASSWORD='1234'
+    }
     parameters {
         string(name: 'MYSQL_ROOT_PASSWORD', defaultValue: '1234', description: 'MySQL password')
     }
