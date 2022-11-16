@@ -54,7 +54,7 @@ pipeline {
             steps {
                 echo 'Running Application'
 //                 bat 'docker stop cloudbank || true && docker rm cloudbank || true'
-                bat 'docker run --detach --rm -p 8090:8090 -t pranavpatel986/banking:0.0.1'
+                bat 'docker run --detach --rm -p 8080:8080 -t pranavpatel986/banking:0.0.1'
             }
         }
     }
