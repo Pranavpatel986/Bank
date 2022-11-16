@@ -47,8 +47,8 @@ pipeline {
 //                 bat 'docker stop bankmysql || true && docker rm bankmysql || true'
                 bat 'docker run --detach --name=bankmysql --env="MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" -p 3307:3306 mysql'
 //                 bat 'sleep 20'
-             bat 'docker exec -i bankmysql mysql -uroot -p1234 < sql_dump/onlinebanking.sql'
-//                 bat 'docker exec -i bankmysql mysql -uroot -p${MYSQL_ROOT_PASSWORD} < sql_dump/onlinebanking.sql'
+            //  bat 'docker exec -i bankmysql mysql -uroot -proot < sql_dump/onlinebanking.sql'
+                bat 'docker exec -i bankmysql mysql -uroot -p${MYSQL_ROOT_PASSWORD} < /code/src/main/resources/sql/V1__20190307_Create_Tables_Online_Banking.sql'
             }
         }
         stage('Deploy and Run') {
