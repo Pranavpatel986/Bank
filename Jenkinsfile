@@ -27,7 +27,7 @@ pipeline {
         stage('Build Application'){
             steps {
                 echo 'Building...'
-                bat 'mvn clean install -Dmaven.test.skip=true'
+                bat 'mvn install -Dmaven.test.skip=true'
             }
         }
         stage('Build Docker Image') {
