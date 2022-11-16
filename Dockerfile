@@ -1,4 +1,4 @@
-FROM openjdk:17
+FROM openjdk:8
 # FROM maven
 # MAINTAINER "hendisantika@yahoo.co.id"
 
@@ -11,7 +11,7 @@ FROM openjdk:17
 # Prepare by downloading dependencies
 # ADD pom.xml /code/pom.xml
 EXPOSE 8080
-ADD target/Banking-app.jar target/Banking-app.jar
+ADD target/Banking-app.jar /Banking-app.jar
 #RUN ["mvn", "dependency:resolve"]
 # RUN ["mvn", "verify"]
 
@@ -20,4 +20,4 @@ ADD target/Banking-app.jar target/Banking-app.jar
 # RUN ["mvn", "package", "-DskipTests"]
 
 
-CMD ["java", "-jar", "target/Banking-app.jar"]
+CMD ["java", "-jar", "/Banking-app.jar"]

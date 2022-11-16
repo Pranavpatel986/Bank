@@ -10,7 +10,14 @@ pipeline {
         stage('Build') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Pranavpatel986/Bank.git']]])
-                sh 'mvn clean install'
+                bat 'mvn clean install'
+            }
+        }
+        stage('Build Docker Image'){
+            steps{
+                script{
+                    bat 'docker build -t pranavpatel986/banking:0.0.1 .'
+                }
             }
         }
     }
