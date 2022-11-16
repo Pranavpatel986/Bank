@@ -12,8 +12,8 @@ WORKDIR /code
 ADD pom.xml /code/pom.xml
 EXPOSE 8080
 # ADD target/Banking-app.jar /Banking-app.jar
-RUN ["mvn", "dependency:resolve"]
-RUN ["mvn", "verify"]
+# RUN ["mvn", "dependency:resolve"]
+# RUN ["mvn", "verify"]
 
 # Adding source, compile and package into a fat jar
 ADD src /code/src
