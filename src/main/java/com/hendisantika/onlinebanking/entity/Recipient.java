@@ -1,6 +1,8 @@
 package com.hendisantika.onlinebanking.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +22,8 @@ import javax.persistence.ManyToOne;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Recipient {
 
     @Id

@@ -1,6 +1,8 @@
 package com.hendisantika.onlinebanking.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -23,6 +25,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class SavingsAccount {
 
     @Id

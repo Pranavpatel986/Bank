@@ -1,5 +1,8 @@
 package com.hendisantika.onlinebanking.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +23,8 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class PrimaryTransaction {
 
     @Id
@@ -36,8 +41,8 @@ public class PrimaryTransaction {
     private PrimaryAccount primaryAccount;
 
 
-    public PrimaryTransaction() {
-    }
+//    public PrimaryTransaction() {
+//    }
 
     public PrimaryTransaction(Date date, String description, String type, String status, double amount, BigDecimal availableBalance, PrimaryAccount primaryAccount) {
         this.date = date;

@@ -3,6 +3,8 @@ package com.hendisantika.onlinebanking.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hendisantika.onlinebanking.security.Authority;
 import com.hendisantika.onlinebanking.security.UserRole;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -31,6 +33,8 @@ import java.util.Set;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements UserDetails {
 
     @Id
