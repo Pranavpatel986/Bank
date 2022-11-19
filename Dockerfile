@@ -10,7 +10,7 @@ WORKDIR /code
 
 # Prepare by downloading dependencies
 ADD pom.xml /code/pom.xml
-EXPOSE 8080
+EXPOSE 8090
 # ADD target/Banking-app.jar /Banking-app.jar
 #RUN ["mvn", "dependency:resolve"]
 # RUN ["mvn", "verify"]
