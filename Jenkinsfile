@@ -36,15 +36,14 @@ pipeline {
             script {
               //dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
               //sh 'docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} jenkins-pipline-build'
-              sh 'docker build -t banking:0.1 .'
-              sh 'docker tag banking:0.1 ${IMAGE_REPO_NAME}:${IMAGE_TAG}'
+              sh 'docker build -t banking:1 .'
             }
           }
         }
         stage('Push'){
             steps{
                 bat 'docker login -u pranavpatel986 -p Ram@2531patel'
-                bat 'docker push ${IMAGE_REPO_NAME}:${IMAGE_TAG}'
+                bat 'docker push banking:1'
             }
         }
     }
