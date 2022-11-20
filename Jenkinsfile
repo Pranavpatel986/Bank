@@ -110,11 +110,11 @@ pipeline {
 //                 bat 'docker exec -i bankmysql mysql -uroot -p${MYSQL_ROOT_PASSWORD} < /code/src/main/resources/sql/V1__20190307_Create_Tables_Online_Banking.sql'
 //             }
 //         }
-        stage(' DokDeploy and Run') {
+        stage('Deploy and Run') {
             steps {
                 echo 'Running Application'
 //                 bat 'docker stop cloudbank || true && docker rm cloudbank || true'
-                bat 'docker run --detach --rm -p 8090:8090 -t --link bankmysql:localhost pranavpatel986/banking:0.0.2'
+                bat 'docker run --detach --rm -p 8090:8090 pranavpatel986/banking:0.0.2'
             }
         }
     }
