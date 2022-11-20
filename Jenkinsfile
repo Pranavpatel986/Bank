@@ -53,6 +53,9 @@
 
 pipeline {
     agent any
+    tools{
+        	maven 'maven'
+        }
 
     parameters {
         string(name: 'MYSQL_ROOT_PASSWORD', defaultValue: '12345678', description: 'MySQL password')
