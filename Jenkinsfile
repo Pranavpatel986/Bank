@@ -8,7 +8,7 @@ pipeline {
 //         REPOSITORY_URI = "pranavpatel986"
     }
     tools{
-    	maven 'maven'
+    	maven 'maven3.8.0'
     }
 
     stages {
