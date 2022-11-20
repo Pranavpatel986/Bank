@@ -8,7 +8,7 @@ pipeline {
 //         REPOSITORY_URI = "pranavpatel986"
     }
     tools{
-    	maven 'maven3.8.2'
+    	maven 'maven'
     }
 
     stages {
@@ -23,7 +23,7 @@ pipeline {
         stage('Built maven'){
             steps{
                 script{
-                    sh 'mvn clean install'
+                    bat 'mvn clean install'
                 }
             }
         }
@@ -36,14 +36,15 @@ pipeline {
             script {
               //dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
               //sh 'docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} jenkins-pipline-build'
-              sh 'docker build -t banking:1 .'
+              bat 'docker build -t banking:0.1 .'
+              bat 'docker tag banking:0.1 ${IMAGE_REPO_NAME}:${IMAGE_TAG}'
             }
           }
         }
         stage('Push'){
             steps{
                 bat 'docker login -u pranavpatel986 -p Ram@2531patel'
-                bat 'docker push banking:1'
+                bat 'docker push ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${IMAGE_TAG}'
             }
         }
     }
