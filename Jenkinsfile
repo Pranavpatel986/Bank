@@ -20,13 +20,13 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/Pranavpatel986/Bank.git']]])
             }
         }
-        stage('Built maven'){
-            steps{
-                script{
-                    bat 'mvn clean install'
-                }
-            }
-        }
+//         stage('Built maven'){
+//             steps{
+//                 script{
+//                     bat 'mvn clean install'
+//                 }
+//             }
+//         }
 
 
 
