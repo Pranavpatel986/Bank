@@ -55,7 +55,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'MYSQL_ROOT_PASSWORD', defaultValue: '1234', description: 'MySQL password')
+        string(name: 'MYSQL_ROOT_PASSWORD', defaultValue: '12345678', description: 'MySQL password')
     }
     stages {
         stage ("Initialize Jenkins Env") {
