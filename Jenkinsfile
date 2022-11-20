@@ -36,7 +36,7 @@ pipeline {
         script {
           //dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
           //sh 'docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} jenkins-pipline-build'
-          sh 'docker build -t Banking:0.1 .'
+          sh 'docker build -t banking:0.1 .'
           sh 'docker tag Banking:0.1 ${IMAGE_REPO_NAME}:${IMAGE_TAG}'
         }
       }
