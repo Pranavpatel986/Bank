@@ -1,5 +1,5 @@
 # FROM openjdk:8
-FROM maven
+FROM image: maven:3.6.3-jdk-11
 # MAINTAINER "hendisantika@yahoo.co.id"
 
 ## Install maven
