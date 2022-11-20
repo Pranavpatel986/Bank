@@ -18,16 +18,7 @@ import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.Date;
 
-/**
- * Created by IntelliJ IDEA.
- * Project : online-banking
- * User: hendisantika
- * Email: hendisantika@gmail.com
- * Telegram : @hendisantika34
- * Date: 09/08/18
- * Time: 04.36
- * To change this template use File | Settings | File Templates.
- */
+
 @Service
 public class AccountServiceImpl implements AccountService {
 

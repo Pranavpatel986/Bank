@@ -10,16 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * Project : online-banking
- * User: hendisantika
- * Email: hendisantika@gmail.com
- * Telegram : @hendisantika34
- * Date: 09/08/18
- * Time: 04.31
- * To change this template use File | Settings | File Templates.
- */
+
 @RestController
 @RequestMapping("/api/appointment")
 @PreAuthorize("hasRole('ADMIN')")

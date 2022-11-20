@@ -8,16 +8,7 @@ import javax.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by IntelliJ IDEA.
- * Project : online-banking
- * User: hendisantika
- * Email: hendisantika@gmail.com
- * Telegram : @hendisantika34
- * Date: 06/08/18
- * Time: 20.45
- * To change this template use File | Settings | File Templates.
- */
+
 @Entity
 public class Role {
 

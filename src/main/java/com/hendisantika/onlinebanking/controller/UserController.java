@@ -12,16 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 
-/**
- * Created by IntelliJ IDEA.
- * Project : online-banking
- * User: hendisantika
- * Email: hendisantika@gmail.com
- * Telegram : @hendisantika34
- * Date: 04/09/18
- * Time: 06.38
- * To change this template use File | Settings | File Templates.
- */
+
 @Controller
 @RequestMapping("/user")
 public class UserController {

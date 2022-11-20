@@ -1,6 +1,6 @@
 FROM openjdk:11
 # FROM maven
-# MAINTAINER "hendisantika@yahoo.co.id"
+
 
 ## Install maven
 #RUN apt-get update

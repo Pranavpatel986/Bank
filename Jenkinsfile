@@ -71,7 +71,7 @@ pipeline {
         }
         stage('Download Code') {
             steps {
-//                echo 'checking out'
+               echo 'checking out'
                checkout scm
             }
         }
@@ -84,7 +84,7 @@ pipeline {
         stage('Build Application'){
             steps {
                 echo 'Building...'
-                sh 'mvn install -Dmaven.test.skip=true'
+                sh 'mvn clean install -Dmaven.test.skip=true'
             }
         }
         stage('Build Docker Image and push') {

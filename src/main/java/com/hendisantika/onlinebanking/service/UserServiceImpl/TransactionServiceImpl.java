@@ -23,16 +23,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by IntelliJ IDEA.
- * Project : online-banking
- * User: hendisantika
- * Email: hendisantika@gmail.com
- * Telegram : @hendisantika34
- * Date: 10/08/18
- * Time: 06.21
- * To change this template use File | Settings | File Templates.
- */
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
