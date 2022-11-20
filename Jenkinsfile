@@ -88,6 +88,11 @@ pipeline {
             steps {
                 echo 'Building Docker image'
                 bat 'docker build -t pranavpatel986/banking:0.0.2 .'
+            }
+        }
+        stage('Push'){
+            steps{
+                bat 'docker login -u pranavpatel986 -p Ram@2531patel'
                 bat 'docker push pranavpatel986/banking:0.0.2'
             }
         }
