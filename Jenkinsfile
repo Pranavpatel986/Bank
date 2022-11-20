@@ -44,7 +44,7 @@ pipeline {
         stage('Push'){
             steps{
                 bat 'docker login -u pranavpatel986 -p Ram@2531patel'
-                bat 'docker push ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${IMAGE_TAG}'
+                bat 'docker push ${IMAGE_REPO_NAME}:${IMAGE_TAG}'
             }
         }
     }
