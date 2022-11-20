@@ -60,7 +60,7 @@ pipeline {
     stages {
         stage ("Initialize Jenkins Env") {
          steps {
-            bat '''
+            sh '''
             echo "PATH = ${PATH}"
             echo "M2_HOME = ${M2_HOME}"
             '''
@@ -81,19 +81,19 @@ pipeline {
         stage('Build Application'){
             steps {
                 echo 'Building...'
-                bat 'mvn install -Dmaven.test.skip=true'
+                sh 'mvn install -Dmaven.test.skip=true'
             }
         }
         stage('Build Docker Image and push') {
             steps {
                 echo 'Building Docker image'
-                bat 'docker build -t pranavpatel986/banking:0.0.2 .'
+                sh 'docker build -t pranavpatel986/banking:0.0.2 .'
             }
         }
         stage('Push'){
             steps{
-                bat 'docker login -u pranavpatel986 -p Ram@2531patel'
-                bat 'docker push pranavpatel986/banking:0.0.2'
+                sh 'docker login -u pranavpatel986 -p Ram@2531patel'
+                sh 'docker push pranavpatel986/banking:0.0.2'
             }
         }
 //        stage('Create Database') {
@@ -114,7 +114,7 @@ pipeline {
             steps {
                 echo 'Running Application'
 //                 bat 'docker stop cloudbank || true && docker rm cloudbank || true'
-                bat 'docker run --detach --rm -p 8090:8090 pranavpatel986/banking:0.0.2'
+                sh 'docker run --detach --rm -p 8090:8090 pranavpatel986/banking:0.0.2'
             }
         }
     }
